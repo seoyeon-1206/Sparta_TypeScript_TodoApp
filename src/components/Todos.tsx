@@ -4,7 +4,13 @@ import colors from "../styles/theme";
 
 const Todos: React.FC<{
   todos: Todo[];
+  setTodos: (todos: Todo[]) => void;
 }> = (props) => {
+  const handleDelete = (id: string) => {
+    const updateTodos = props.todos.filter((todo) => todo.id != id);
+    props.setTodos(updateTodos);
+  };
+
   return (
     <Container>
       {props.todos.map((todo) => (
@@ -15,7 +21,12 @@ const Todos: React.FC<{
           </TodoDetail>
           <ButtonWrapper>
             <Button>완료</Button>
-            <Button borderColor={colors.mainPink}>삭제하기</Button>
+            <Button
+              onClick={() => handleDelete(todo.id)}
+              borderColor={colors.mainPink}
+            >
+              삭제하기
+            </Button>
           </ButtonWrapper>
         </TodoListWrapper>
       ))}

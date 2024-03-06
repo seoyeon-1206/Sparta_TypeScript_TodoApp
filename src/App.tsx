@@ -30,7 +30,7 @@ function App() {
       <GlobalStyle />
       <div>투두리스트</div>
       <AddTodo onAddTodo={handleAddTodoList} />
-      <Todos todos={todos} />
+      <Todos todos={todos} setTodos={setTodos} />
     </>
   );
 }

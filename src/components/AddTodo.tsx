@@ -17,7 +17,6 @@ const AddTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
   };
 
   const handleAddTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     if (!title || !description) {
       alert("제목과 내용을 모두 입력해주세요.");
       return;

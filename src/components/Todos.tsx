@@ -6,7 +6,7 @@ const Todos: React.FC<{
   todos: Todo[];
 }> = (props) => {
   return (
-    <>
+    <Container>
       {props.todos.map((todo) => (
         <TodoListWrapper>
           <TodoDetail key={todo.id}>
@@ -19,16 +19,23 @@ const Todos: React.FC<{
           </ButtonWrapper>
         </TodoListWrapper>
       ))}
-    </>
+    </Container>
   );
 };
 
 export default Todos;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const TodoListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
   width: 412px;
   left: 232px;

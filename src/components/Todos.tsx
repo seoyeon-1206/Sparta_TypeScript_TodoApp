@@ -49,8 +49,6 @@ const TodoListWrapper = styled.div`
   justify-content: center;
   padding: 20px;
   width: 412px;
-  left: 232px;
-  top: 414px;
   border-radius: 20px;
   border: 5px solid ${colors.mainColor};
 
@@ -63,7 +61,7 @@ const TodoDetail = styled.div`
   flex-direction: column;
   & > * + * {
     border-top: 2px solid ${colors.mainColor};
-    padding-top: 10px; /* 밑줄 위 여백 추가 */
+    padding-top: 10px;
   }
 `;
 const TodoTitle = styled.h1`

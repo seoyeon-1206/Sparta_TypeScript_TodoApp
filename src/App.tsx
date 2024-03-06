@@ -28,7 +28,6 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <div>투두리스트</div>
       <AddTodo onAddTodo={handleAddTodoList} />
       <Todos todos={todos} setTodos={setTodos} />
     </>

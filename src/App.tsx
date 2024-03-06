@@ -8,23 +8,28 @@ import AddTodo from "./components/AddTodo";
 function App() {
   const [todos, setTodos] = useState<Todo[]>([
     {
-      id: 1,
+      id: "dd",
       title: "리액트 공부하기",
       description: "타입스크립트 강의 완강",
       isDone: false,
     },
     {
-      id: 2,
+      id: "ff",
       title: "타입스크립트 공부하기",
       description: "타입스크립트 강의 완강",
       isDone: false,
     },
   ]);
+
+  const handleAddTodoList = (newTodo: Todo) => {
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
+
   return (
     <>
       <GlobalStyle />
       <div>투두리스트</div>
-      <AddTodo />
+      <AddTodo onAddTodo={handleAddTodoList} />
       <Todos todos={todos} />
     </>
   );

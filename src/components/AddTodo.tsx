@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { FaSquarePlus } from "react-icons/fa6";
+import Todo from "../models/todo";
+import { v4 as uuidv4 } from "uuid";
 
-const AddTodo: React.FC<{}> = (props) => {
+const AddTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
@@ -13,6 +15,29 @@ const AddTodo: React.FC<{}> = (props) => {
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
   };
+
+  const handleAddTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!title || !description) {
+      alert("제목과 내용을 모두 입력해주세요.");
+      return;
+    }
+    // 새로운 할 일 생성
+    const newTodo: Todo = {
+      id: uuidv4(),
+      title,
+      description,
+      isDone: false,
+    };
+
+    // 새로운 할 일을 app컴포넌트로 전달
+    props.onAddTodo(newTodo);
+
+    // input 초기화
+    setTitle("");
+    setDescription("");
+  };
+
   return (
     <AddTodoWrapper>
       <InputWrapper>
@@ -29,7 +54,7 @@ const AddTodo: React.FC<{}> = (props) => {
           />
         </DescriptionWrapper>
       </InputWrapper>
-      <PlusButton>
+      <PlusButton onClick={handleAddTodo}>
         <FaSquarePlus size={40} color="black" />
       </PlusButton>
     </AddTodoWrapper>
@@ -37,7 +62,7 @@ const AddTodo: React.FC<{}> = (props) => {
 };
 export default AddTodo;
 
-const AddTodoWrapper = styled.div`
+const AddTodoWrapper = styled.form`
   display: flex;
   flex-direction: row;
   padding: 20px;
@@ -73,4 +98,10 @@ const DescriptionWrapper = styled.div`
   gap: 20px;
   margin-right: 40px;
 `;
-const PlusButton = styled.div``;
+const PlusButton = styled.button`
+  cursor: pointer;
+  border: none; /* 버튼의 기본 스타일 제거 */
+  background: none; /* 배경색 제거 */
+  padding: 0; /* 패딩 제거 */
+  margin: 0; /* 마진 제거 */
+`;

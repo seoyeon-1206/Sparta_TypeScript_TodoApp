@@ -3,6 +3,7 @@ import "./App.css";
 import Todo from "./models/todo";
 import Todos from "./components/Todos";
 import GlobalStyle from "./styles/GlobalStyle";
+import AddTodo from "./components/AddTodo";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([
@@ -23,6 +24,7 @@ function App() {
     <>
       <GlobalStyle />
       <div>투두리스트</div>
+      <AddTodo />
       <Todos todos={todos} />
     </>
   );

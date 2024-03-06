@@ -12,6 +12,12 @@ function App() {
       description: "타입스크립트 강의 완강",
       isDone: false,
     },
+    {
+      id: 2,
+      title: "타입스크립트 공부하기",
+      description: "타입스크립트 강의 완강",
+      isDone: false,
+    },
   ]);
   return (
     <>

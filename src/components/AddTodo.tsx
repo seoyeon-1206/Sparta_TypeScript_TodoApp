@@ -5,16 +5,28 @@ import { FaSquarePlus } from "react-icons/fa6";
 const AddTodo: React.FC<{}> = (props) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(e.target.value);
+  };
   return (
     <AddTodoWrapper>
       <InputWrapper>
         <TitleWrapper>
           <p>제목</p>
-          <input />
+          <input type="text" value={title} onChange={handleTitleChange} />
         </TitleWrapper>
         <DescriptionWrapper>
           <p>내용</p>
-          <input />
+          <input
+            type="text"
+            value={description}
+            onChange={handleDescriptionChange}
+          />
         </DescriptionWrapper>
       </InputWrapper>
       <PlusButton>

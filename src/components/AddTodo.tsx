@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { FaSquarePlus } from "react-icons/fa6";
-import Todo from "../models/todo";
 import { v4 as uuidv4 } from "uuid";
 import colors from "../styles/theme";
 import { useDispatch } from "react-redux";

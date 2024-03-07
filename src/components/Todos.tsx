@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import colors from "../styles/theme";
 import TodoItem from "./TodoItem";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, updateTodo } from "../redux/modules/todosSlice";
+import { useSelector } from "react-redux";
 import Todo from "../models/todo";
 
 const Todos: React.FC = () => {

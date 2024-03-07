@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "../styles/theme";
 import Todo from "../models/todo";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../redux/modules/todosSlice";
 
 const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {

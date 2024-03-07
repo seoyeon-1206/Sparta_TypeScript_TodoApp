@@ -4,32 +4,20 @@ import Todo from "./models/todo";
 import Todos from "./components/Todos";
 import GlobalStyle from "./styles/GlobalStyle";
 import AddTodo from "./components/AddTodo";
+import { useDispatch } from "react-redux";
+import { addTodo } from "./redux/modules/todosSlice";
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([
-    {
-      id: "dd",
-      title: "리액트 공부하기",
-      description: "타입스크립트 강의 완강",
-      isDone: false,
-    },
-    {
-      id: "ff",
-      title: "타입스크립트 공부하기",
-      description: "타입스크립트 강의 완강",
-      isDone: false,
-    },
-  ]);
-
+  const dispatch = useDispatch();
   const handleAddTodoList = (newTodo: Todo) => {
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    dispatch(addTodo(newTodo));
   };
 
   return (
     <>
       <GlobalStyle />
       <AddTodo onAddTodo={handleAddTodoList} />
-      <Todos todos={todos} setTodos={setTodos} />
+      <Todos />
     </>
   );
 }

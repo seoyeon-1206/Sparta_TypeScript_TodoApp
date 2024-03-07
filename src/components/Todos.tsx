@@ -1,22 +1,20 @@
 import styled from "styled-components";
-import Todo from "../models/todo";
 import colors from "../styles/theme";
 import TodoItem from "./TodoItem";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTodo, updateTodo } from "../redux/modules/todosSlice";
+import Todo from "../models/todo";
 
-const Todos: React.FC<{
-  todos: Todo[];
-  setTodos: (todos: Todo[]) => void;
-}> = (props) => {
+const Todos: React.FC = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: { todos: Todo[] }) => state.todos);
+
   const handleDelete = (id: string) => {
-    const updateTodos = props.todos.filter((todo) => todo.id != id);
-    props.setTodos(updateTodos);
+    dispatch(deleteTodo(id));
   };
 
   const handleProgressUpdate = (id: string) => {
-    const updateTodos: Todo[] = props.todos.map((todo) => {
-      return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
-    });
-    props.setTodos(updateTodos);
+    dispatch(updateTodo(id));
   };
 
   return (
@@ -24,7 +22,7 @@ const Todos: React.FC<{
       <ProgressWrapper>
         <WorkingWrapper>
           <ProgressTitle>working🔥</ProgressTitle>
-          {props.todos
+          {todos
             .filter((todo) => !todo.isDone)
             .map((todo) => (
               <TodoItem
@@ -37,7 +35,7 @@ const Todos: React.FC<{
         </WorkingWrapper>
         <DoneWrapper>
           <ProgressTitle color={colors.mainPink}>Done✅ </ProgressTitle>
-          {props.todos
+          {todos
             .filter((todo) => todo.isDone)
             .map((todo) => (
               <TodoItem

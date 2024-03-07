@@ -2,24 +2,17 @@ import styled from "styled-components";
 import colors from "../styles/theme";
 import Todo from "../models/todo";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTodo, updateTodo } from "../redux/modules/todosSlice";
 
-interface TodoItemPrps {
-  todo: Todo;
-  onDelete: (id: string) => void;
-  onProgressUpdate: (id: string) => void;
-}
-
-const TodoItem: React.FC<TodoItemPrps> = ({
-  todo,
-  onProgressUpdate,
-  onDelete,
-}) => {
+const TodoItem: React.FC<{ todo: Todo }> = ({ todo }) => {
+  const dispatch = useDispatch();
   const handleDelete = () => {
-    onProgressUpdate(todo.id);
+    dispatch(deleteTodo(todo.id));
   };
 
   const handleProgressUpdate = () => {
-    onDelete(todo.id);
+    dispatch(updateTodo(todo.id));
   };
 
   return (

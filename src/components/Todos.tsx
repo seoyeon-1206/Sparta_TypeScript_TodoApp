@@ -6,16 +6,7 @@ import { deleteTodo, updateTodo } from "../redux/modules/todosSlice";
 import Todo from "../models/todo";
 
 const Todos: React.FC = () => {
-  const dispatch = useDispatch();
   const todos = useSelector((state: { todos: Todo[] }) => state.todos);
-
-  const handleDelete = (id: string) => {
-    dispatch(deleteTodo(id));
-  };
-
-  const handleProgressUpdate = (id: string) => {
-    dispatch(updateTodo(id));
-  };
 
   return (
     <Container>
@@ -25,12 +16,7 @@ const Todos: React.FC = () => {
           {todos
             .filter((todo) => !todo.isDone)
             .map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                onDelete={handleDelete}
-                onProgressUpdate={handleProgressUpdate}
-              />
+              <TodoItem key={todo.id} todo={todo} />
             ))}
         </WorkingWrapper>
         <DoneWrapper>
@@ -38,12 +24,7 @@ const Todos: React.FC = () => {
           {todos
             .filter((todo) => todo.isDone)
             .map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                onDelete={handleDelete}
-                onProgressUpdate={handleProgressUpdate}
-              />
+              <TodoItem key={todo.id} todo={todo} />
             ))}
         </DoneWrapper>
       </ProgressWrapper>

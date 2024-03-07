@@ -4,8 +4,11 @@ import { FaSquarePlus } from "react-icons/fa6";
 import Todo from "../models/todo";
 import { v4 as uuidv4 } from "uuid";
 import colors from "../styles/theme";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/modules/todosSlice";
 
-const AddTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
+const AddTodo: React.FC = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
@@ -24,15 +27,14 @@ const AddTodo: React.FC<{ onAddTodo: (newTodo: Todo) => void }> = (props) => {
       return;
     }
     // 새로운 할 일 생성
-    const newTodo: Todo = {
-      id: uuidv4(),
-      title,
-      description,
-      isDone: false,
-    };
-
-    // 새로운 할 일을 app컴포넌트로 전달
-    props.onAddTodo(newTodo);
+    dispatch(
+      addTodo({
+        id: uuidv4(),
+        title,
+        description,
+        isDone: false,
+      })
+    );
 
     // input 초기화
     setTitle("");

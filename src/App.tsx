@@ -8,15 +8,10 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "./redux/modules/todosSlice";
 
 function App() {
-  const dispatch = useDispatch();
-  const handleAddTodoList = (newTodo: Todo) => {
-    dispatch(addTodo(newTodo));
-  };
-
   return (
     <>
       <GlobalStyle />
-      <AddTodo onAddTodo={handleAddTodoList} />
+      <AddTodo />
       <Todos />
     </>
   );
